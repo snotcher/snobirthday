@@ -1,0 +1,240 @@
+.love-letter-section {
+    padding: 8rem 1rem;
+    background-color: var(--color-blush);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.envelope {
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    transition: transform 1s ease-in-out;
+    transform-style: preserve-3d;
+    margin-top: 2rem;
+}
+
+/* Envelope Flap Opening */
+.envelope-flap {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: #f1d3db;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+    z-index: 3;
+    transform-origin: top;
+    transition: transform 1.5s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+/* Wax Seal */
+.wax-seal {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(50px) scale(0.5);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #ff4d4d, #990000);
+    border-radius: 50%;
+    box-shadow:
+        inset 0 0 5px rgba(0, 0, 0, 0.5),
+        0 5px 10px rgba(0, 0, 0, 0.3);
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffcccc;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5), 1px 1px 2px rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.envelope.open .wax-seal {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    top: -80px;
+    /* Moves up with the flap conceptually */
+}
+
+/* Parchment Letter Paper */
+.letter-paper {
+    background: repeating-linear-gradient(to bottom,
+            #fff8eb,
+            #fff8eb 39px,
+            #f2e8d5 40px);
+    padding: 5rem 3rem 4rem;
+    border-radius: 4px;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.1),
+        inset 0 0 50px rgba(210, 180, 140, 0.2);
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(100px) rotate(0deg);
+    transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Rotate slightly for realism when opened */
+.envelope.open .letter-paper {
+    opacity: 1;
+    transform: translateY(0) rotate(-0.5deg);
+}
+
+.quill-icon {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-size: 2.5rem;
+    opacity: 0.7;
+    transform: rotate(15deg);
+}
+
+.letter-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.letter-greeting {
+    font-family: var(--font-heading);
+    color: var(--color-dark-rose);
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+}
+
+.letter-body {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    line-height: 40px;
+    /* Matches the repeating linear gradient steps perfectly */
+    color: #3a2b25;
+    /* Dark brown ink */
+}
+
+.typewriter-line {
+    margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.5s ease-in, transform 1.5s ease-out;
+}
+
+/* Staggered text appearance */
+.envelope.open .line-1 {
+    transition-delay: 1.2s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.envelope.open .line-2 {
+    transition-delay: 2.7s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.envelope.open .line-3 {
+    transition-delay: 4.2s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.envelope.open .line-4 {
+    transition-delay: 5.7s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.envelope.open .line-5 {
+    transition-delay: 7.2s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.decorative-divider {
+    width: 100%;
+    height: 2px;
+    margin: 3rem 0;
+    background-color: var(--color-gold);
+    position: relative;
+    opacity: 0.6;
+}
+
+.decorative-divider::after {
+    content: '♥';
+    color: var(--color-dark-rose);
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff8eb;
+    padding: 0 1rem;
+}
+
+.letter-closing {
+    font-size: 1.2rem;
+    color: #3a2b25;
+    margin-top: 2rem;
+    opacity: 0;
+    transition: opacity 1.5s ease-in 8.7s;
+}
+
+.letter-signature {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--color-dark-rose);
+    margin-top: 0.5rem;
+    opacity: 0;
+    transition: opacity 1.5s ease-in 9.7s;
+}
+
+.envelope.open .letter-closing,
+.envelope.open .letter-signature {
+    opacity: 1;
+}
+
+/* Wave connecting to Reason section */
+.wave-divider-top {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    z-index: 5;
+}
+
+.wave-divider-top svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 80px;
+}
+
+@media (max-width: 768px) {
+    .letter-paper {
+        padding: 3rem 1.5rem;
+    }
+
+    .letter-greeting {
+        font-size: 2rem;
+    }
+
+    .letter-body {
+        font-size: 1.1rem;
+    }
+}

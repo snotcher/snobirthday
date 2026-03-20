@@ -1,0 +1,123 @@
+:root {
+  --color-dark-rose: #6a0030;
+  --color-rose: #c2185b;
+  --color-blush: #fce4ec;
+  --color-gold: #f5d78e;
+  --color-ivory: #fffaf0;
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  /* Subtly shifting global gradient */
+  background: linear-gradient(120deg, var(--color-dark-rose), var(--color-rose), var(--color-blush), var(--color-gold));
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  color: #333;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Base Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-rose);
+  font-weight: 600;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-rose), var(--color-gold));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--color-dark-rose), var(--color-rose));
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(194, 24, 91, 0.3);
+}
+
+/* Global Footer */
+.footer {
+  text-align: center;
+  padding: 3rem;
+  font-family: var(--font-heading);
+  color: var(--color-ivory);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  animation: slowFade 3s ease-in-out infinite alternate;
+}
+
+@keyframes slowFade {
+  from {
+    opacity: 0.5;
+    text-shadow: 0 0 5px rgba(245, 215, 142, 0.3);
+  }
+
+  to {
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(245, 215, 142, 0.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
